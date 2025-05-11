@@ -1,10 +1,4 @@
-import {
-  EmbedBuilder,
-  ModalBuilder,
-  SlashCommandBuilder,
-  TextInputBuilder,
-  StringSelectMenuBuilder
-} from 'discord.js'
+import { EmbedBuilder, SlashCommandBuilder } from 'discord.js'
 const emojis = ['😃', '😎', '🤗', '😍', '🧙']
 
 export default {
@@ -32,7 +26,7 @@ export default {
   async execute(interaction) {
     const embed = new EmbedBuilder()
       .setColor(0x0099ff)
-      .setTitle('Tour Request')
+      .setTitle('Tour Requested!')
       .setDescription(
         `A tour has been requested by ${interaction.user.toString()}!`
       )
@@ -41,11 +35,9 @@ export default {
         value: interaction.options.getString('in_game_name')
       })
       .addFields({
-        name: 'Reaction',
+        name: 'Reaction Needed',
         value: interaction.options.getString('reaction')
       })
-
-    await interaction.reply({ embeds: [embed], ephemeral: true })
 
     await interaction.channel.send({ embeds: [embed] })
   }
