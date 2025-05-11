@@ -9,20 +9,21 @@
     "node": ">=18.x"
   },
   "scripts": {
-    "start": "bun app.ts",
-    "register": "bun commands.ts",
-    "dev": "nodemon app.js"
+    "build": "echo 'No build needed'",
+    "start": "bun index.js",
+    "register": "bun commands.js",
+    "dev": "nodemon index.js"
   },
   "author": "Shay DeWael",
   "license": "MIT",
   "dependencies": {
     "discord-interactions": "^4.0.0",
+    "discord.js": "^14.19.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.0",
-    "tsc": "^2.0.4",
     "typescript": "^5.8.3"
   }
 }
