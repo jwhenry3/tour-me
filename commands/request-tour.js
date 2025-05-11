@@ -39,6 +39,8 @@ export default {
         value: interaction.options.getString('reaction')
       })
 
+    await interaction.reply({ content: 'Tour requested!', ephemeral: true })
+
     await interaction.channel.send({ embeds: [embed] })
   }
 }
