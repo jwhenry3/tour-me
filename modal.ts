@@ -112,6 +112,9 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), function 
     }
   }
 });
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
 app.get('/interactions', (req, res) => {
   res.send('Hello World!');
 });
