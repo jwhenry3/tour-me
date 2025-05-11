@@ -3,11 +3,9 @@ import {
   Collection,
   Events,
   GatewayIntentBits,
-  MessageFlags,
-  EmbedBuilder
+  MessageFlags
 } from 'discord.js'
 
-import ping from './commands/ping.js'
 import requestTour from './commands/request-tour.js'
 
 import dotenv from 'dotenv'
@@ -29,7 +27,6 @@ client.login(process.env.DISCORD_TOKEN)
 
 client.commands = new Collection()
 
-client.commands.set(ping.data.name, ping)
 client.commands.set(requestTour.data.name, requestTour)
 
 client.on(Events.InteractionCreate, async (interaction) => {
