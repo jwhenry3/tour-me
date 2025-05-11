@@ -1,4 +1,4 @@
-import { capitalize } from './utils.js';
+import { capitalize } from './utils'
 
 export function getResult(p1, p2) {
   let gameResult;
@@ -86,8 +86,8 @@ export function getRPSChoices() {
 
 // Function to fetch shuffled options for select menu
 export function getShuffledOptions() {
-  const allChoices = getRPSChoices();
-  const options = [];
+  const allChoices: any[] = getRPSChoices();
+  const options: any[] = [];
 
   for (let c of allChoices) {
     // Formatted for select menus

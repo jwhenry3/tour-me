@@ -33,21 +33,39 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), function 
                 {
                   // See https://discord.com/developers/docs/interactions/message-components#text-inputs-text-input-structure
                   type: MessageComponentTypes.INPUT_TEXT,
-                  custom_id: 'my_text',
+                  custom_id: 'player_name',
                   style: 1,
-                  label: 'Type some text',
+                  label: 'In Game Name',
                 },
               ],
             },
             {
+              // Text inputs must be inside of an action component
               type: MessageComponentTypes.ACTION_ROW,
               components: [
                 {
-                  type: MessageComponentTypes.INPUT_TEXT,
-                  custom_id: 'my_longer_text',
-                  // Bigger text box for input
-                  style: 2,
-                  label: 'Type some (longer) text',
+                  // See https://discord.com/developers/docs/interactions/message-components#text-inputs-text-input-structure
+                  type: MessageComponentTypes.STRING_SELECT,
+                  custom_id: 'reaction',
+                  options: [
+                    {
+                      label: '#1',
+                      value: '1',
+                    },
+                    {
+                      label: '#2',
+                      value: '2',
+                    },
+                    {
+                      label: '#3',
+                      value: '3',
+                    },
+                    {
+                      label: '#4',
+                      value: '4',
+                    },
+                  ],
+                  label: 'Reaction Needed',
                 },
               ],
             },
@@ -71,14 +89,25 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), function 
       // Get value of text inputs
       for (let action of data.components) {
         let inputComponent = action.components[0];
-        modalValues += `${inputComponent.custom_id}: ${inputComponent.value}\n`;
+        modalValues += `${inputComponent.label}: ${inputComponent.value}\n`;
       }
 
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
-          content: `<@${userId}> typed the following (in a modal):\n\n${modalValues}`,
+          content: `<@${userId}> Needs your help!\n\n${modalValues}`,
         },
+        components: [
+          {
+            type: MessageComponentTypes.SECTION,
+            components: [
+              {
+                type: MessageComponentTypes.TEXT_DISPLAY,
+                text: modalValues,
+              },
+            ],
+          }
+        ]
       });
     }
   }

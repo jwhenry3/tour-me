@@ -8,8 +8,8 @@ import {
   ButtonStyleTypes,
   verifyKeyMiddleware,
 } from 'discord-interactions';
-import { getRandomEmoji, DiscordRequest } from './utils.js';
-import { getShuffledOptions, getResult } from './game.js';
+import { getRandomEmoji, DiscordRequest } from './utils';
+import { getShuffledOptions, getResult } from './game';
 
 // Create an express app
 const app = express();
@@ -176,7 +176,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
         }
       }
     }
-    
+
     return;
   }
 
